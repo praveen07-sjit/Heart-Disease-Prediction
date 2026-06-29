@@ -247,8 +247,22 @@ setConfidence(data.confidence);
           <button type="submit">Predict</button>
 
         {result && (
-<div className="result">
-    <h2>{result}</h2>
+<div
+  className={`result ${
+    heartDisease >= 70
+      ? "high-risk"
+      : heartDisease >= 40
+      ? "medium-risk"
+      : "low-risk"
+  }`}
+>
+    <h2>
+  {heartDisease >= 70
+    ? "🔴 High Risk of Heart Disease"
+    : heartDisease >= 40
+    ? "🟡 Moderate Risk of Heart Disease"
+    : "🟢 Low Risk of Heart Disease"}
+</h2>
 
     <p><strong>Confidence:</strong> {confidence}%</p>
 

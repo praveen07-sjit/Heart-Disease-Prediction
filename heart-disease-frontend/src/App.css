@@ -67,3 +67,33 @@ button:hover {
     background:#222;
     color:white;
 }
+/* ---------- Result Card ---------- */
+
+.result {
+  margin-top: 20px;
+  padding: 25px;
+  border-radius: 18px;
+  color: white;
+  transition: all 0.5s ease;
+}
+
+/* High Risk */
+
+.high-risk {
+  background: linear-gradient(135deg, #ff4b4b, #b30000);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+}
+
+/* Medium Risk */
+
+.medium-risk {
+  background: linear-gradient(135deg, #ffb347, #ff9800);
+  box-shadow: 0 0 25px rgba(255, 165, 0, 0.4);
+}
+
+/* Low Risk */
+
+.low-risk {
+  background: linear-gradient(135deg, #22c55e, #15803d);
+  box-shadow: 0 0 25px rgba(0, 255, 100, 0.35);
+}
