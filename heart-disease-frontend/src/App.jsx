@@ -58,7 +58,20 @@ setConfidence(data.confidence);
   console.error(err);
 });
 };
+let summary = "";
 
+if (heartDisease >= 70) {
+  summary =
+    "The patient is at HIGH risk of heart disease. Immediate medical consultation is recommended. Lifestyle modifications and regular monitoring are strongly advised.";
+}
+else if (heartDisease >= 40) {
+  summary =
+    "The patient has a MODERATE risk of heart disease. Regular exercise, a healthy diet, and periodic medical checkups are recommended.";
+}
+else {
+  summary =
+    "The patient is at LOW risk of heart disease. Continue maintaining a healthy lifestyle and attend routine medical checkups.";
+}
   return (
     <div
   className="container"
@@ -285,6 +298,11 @@ setConfidence(data.confidence);
         max="100"
         style={{ width: "100%", height: "20px" }}
     ></progress>
+    <br /><br />
+
+<h3>Patient Summary</h3>
+
+<p>{summary}</p>
 </div>
 )}
       </form>
