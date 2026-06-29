@@ -141,27 +141,20 @@ button:hover{
 
 }
 
-.result{
-    margin-top:20px;
-    padding:20px;
-    border-radius:10px;
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-    background:#222;
-    color:white;
-}
+
 /* ---------- Result Card ---------- */
 
 .result {
-  margin-top: 25px;
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-  color: white;
-  box-shadow: 0 15px 35px rgba(0,0,0,.4);
-  animation: fadeIn .6s ease;
-  transition: .4s;
+    margin-top: 25px;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 15px 35px rgba(0,0,0,.4);
+    animation: fadeIn .6s ease;
+    transition: .4s;
+
+    width: 100%;
 }
 
 /* High Risk */
