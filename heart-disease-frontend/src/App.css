@@ -15,17 +15,19 @@ body{
     50%{background-position:100% 50%;}
     100%{background-position:0% 50%;}
 }
-.container {
-  min-height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.container{
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    min-height:100vh;
 
-  padding: 40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 }
 
 h1 {
@@ -40,32 +42,81 @@ p {
 }
 
 form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap:20px;
+
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+
+    padding:35px;
+
+    border-radius:25px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+
+    transition:.4s;
 }
 
 input,
-select,
-button {
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  font-size: 14px;
+select{
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.9);
+
+    font-size:15px;
+
+    transition:.3s;
+
 }
 
-button {
-  grid-column: span 2;
-  background-color: #e63946;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
+input:focus,
+select:focus{
+
+    transform:scale(1.03);
+
+    box-shadow:0 0 15px rgba(33,150,243,.5);
+
+    outline:none;
+
 }
 
-button:hover {
-  background-color: #d62828;
+button{
+
+    grid-column:span 2;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(90deg,#1565C0,#42A5F5);
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
 }
 
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.35);
+
+}
 
 .result{
     margin-top:20px;
