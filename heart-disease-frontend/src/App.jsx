@@ -20,6 +20,8 @@ function App() {
 });
 const [result, setResult] = useState("");
 const [confidence, setConfidence] = useState("");
+const [heartDisease, setHeartDisease] = useState(0);
+const [healthy, setHealthy] = useState(0);
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -49,6 +51,8 @@ const [confidence, setConfidence] = useState("");
 .then((data) => {
   setResult(data.result);
 setConfidence(data.confidence);
+  setHeartDisease(data.heartDisease);
+  setHealthy(data.healthy);
 })
 .catch((err) => {
   console.error(err);
@@ -243,11 +247,32 @@ setConfidence(data.confidence);
           <button type="submit">Predict</button>
 
         {result && (
-          <div className="result">
-            <h2>{result}</h2>
-            <p>Confidence: {confidence}%</p>
-          </div>
-        )}
+<div className="result">
+    <h2>{result}</h2>
+
+    <p><strong>Confidence:</strong> {confidence}%</p>
+
+    <br />
+
+    <p><strong>Heart Disease Risk:</strong> {heartDisease}%</p>
+
+    <progress
+        value={heartDisease}
+        max="100"
+        style={{ width: "100%", height: "20px" }}
+    ></progress>
+
+    <br /><br />
+
+    <p><strong>Healthy Probability:</strong> {healthy}%</p>
+
+    <progress
+        value={healthy}
+        max="100"
+        style={{ width: "100%", height: "20px" }}
+    ></progress>
+</div>
+)}
       </form>
     </div>
   </div>

@@ -38,6 +38,9 @@ def predict():
 
     confidence = round(max(probability[0]) * 100, 2)
 
+    heart_disease = round(probability[0][1] * 100, 2)
+    healthy = round(probability[0][0] * 100, 2)
+
     if prediction[0] == 1:
         result = "High Risk of Heart Disease"
     else:
@@ -45,7 +48,9 @@ def predict():
 
     return jsonify({
     "result": result,
-    "confidence": confidence
+    "confidence": confidence,
+    "heartDisease": heart_disease,
+    "healthy": healthy
 })
 
 if __name__ == "__main__":
