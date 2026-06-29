@@ -31,7 +31,7 @@ const [confidence, setConfidence] = useState("");
     
     e.preventDefault();
 
-    fetch("http://127.0.0.1:5000/predict", {
+    fetch("https://heart-disease-prediction-zybj.onrender.com/predict", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
