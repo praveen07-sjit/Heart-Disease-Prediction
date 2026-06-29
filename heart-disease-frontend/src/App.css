@@ -46,7 +46,7 @@ form {
     grid-template-columns: repeat(2,1fr);
     gap:20px;
 
-    background:rgba(255,255,255,0.12);
+    background:#102542;
     backdrop-filter:blur(15px);
 
     padding:35px;
@@ -61,17 +61,40 @@ form {
 input,
 select{
 
-    padding:15px;
+background:#2b3f5c;
 
-    border:none;
+color:white;
 
-    border-radius:12px;
+border:2px solid rgba(255,255,255,.12);
 
-    background:rgba(255,255,255,.9);
+padding:15px;
 
-    font-size:15px;
+font-size:16px;
 
-    transition:.3s;
+border-radius:12px;
+
+transition:.3s;
+
+}
+
+input::placeholder{
+
+color:white;
+
+}
+
+select{
+
+color:white;
+
+}
+
+input:focus,
+select:focus{
+
+border-color:#4fc3f7;
+
+box-shadow:0 0 15px rgba(79,195,247,.4);
 
 }
 
