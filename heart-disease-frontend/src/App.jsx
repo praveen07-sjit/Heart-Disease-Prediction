@@ -29,10 +29,10 @@ const [healthy, setHealthy] = useState(0);
       [e.target.name]: e.target.value
     });
   };
-  const downloadReport = () => {
+const downloadReport = () => {
   const doc = new jsPDF();
 
-  doc.setFontSize(20);
+  doc.setFontSize(18);
   doc.text("Heart Disease Prediction Report", 20, 20);
 
   doc.setFontSize(12);
@@ -46,12 +46,13 @@ const [healthy, setHealthy] = useState(0);
   doc.text(`Risk: ${heartDisease}%`, 20, 100);
   doc.text(`Confidence: ${confidence}%`, 20, 110);
 
-  doc.text("Summary:", 20, 130);
-  doc.text(summary, 20, 140);
+  doc.text("Patient Summary:", 20, 130);
+
+  const lines = doc.splitTextToSize(summary, 170);
+  doc.text(lines, 20, 140);
 
   doc.save("Heart_Disease_Report.pdf");
 };
-
  const handleSubmit = (e) => {
     
     e.preventDefault();
@@ -106,21 +107,19 @@ else {
 
   <div className="left-panel">
 
-    <span className="logo-text">
-      CARDIO CARE
-    </span>
+ <span className="logo-text">
+  🫀 CardioCare
+</span>
 
-    <h1>
-      Heart Disease
-      <br />
-      Prediction System
-    </h1>
+<h1>
+  Heart Disease
+  <br />
+  Risk Assessment
+</h1>
 
-    <div className="line"></div>
-
-    <h3>
-      Accurate Heart Risk Assessment
-    </h3>
+<h3>
+  Machine Learning Powered Healthcare
+</h3>
 
     <p>
       Enter patient details to predict the
