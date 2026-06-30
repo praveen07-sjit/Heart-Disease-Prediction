@@ -190,3 +190,33 @@ transform:translateY(0);
 }
 
 }
+/* ---------- Patient Information ---------- */
+
+.info-panel {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 20px;
+
+    background: #102542;
+
+    color: white;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.3);
+}
+
+.info-panel h3{
+    text-align:center;
+    color:#4fc3f7;
+    margin-bottom:15px;
+}
+
+.info-panel p{
+    text-align:left;
+    color:white;
+    margin:10px 0;
+}
+
+.info-panel strong{
+    color:#4fc3f7;
+}

@@ -258,6 +258,23 @@ else {
 </select>
 
           <button type="submit">Predict</button>
+          {result && (
+<div className="info-panel">
+
+<h3>📋 Patient Information</h3>
+
+<p><strong>Age:</strong> {formData.age}</p>
+
+<p><strong>Blood Pressure:</strong> {formData.bp}</p>
+
+<p><strong>Cholesterol:</strong> {formData.cholesterol}</p>
+
+<p><strong>Heart Rate:</strong> {formData.thalach}</p>
+
+<p><strong>Old Peak:</strong> {formData.oldpeak}</p>
+
+</div>
+)}
 
         {result && (
 <div
