@@ -203,6 +203,8 @@ transform:translateY(0);
     color: white;
 
     box-shadow: 0 10px 25px rgba(0,0,0,.3);
+    width:100%;
+box-sizing:border-box;
 }
 
 .info-panel h3{
@@ -233,6 +235,8 @@ background:#102542;
 box-shadow:0 10px 25px rgba(0,0,0,.3);
 
 color:white;
+width:100%;
+box-sizing:border-box;
 
 }
 
@@ -268,10 +272,11 @@ line-height:1.5;
     align-items: flex-start;
 }
 .left-column{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    align-items:stretch;
 }
 .right-column{
     flex: 2;
