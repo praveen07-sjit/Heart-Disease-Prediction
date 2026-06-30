@@ -258,6 +258,7 @@ else {
 </select>
 
           <button type="submit">Predict</button>
+          </form>
          {result && (
   <div className="dashboard">
 
@@ -337,7 +338,7 @@ else {
 
   </div>
 )} 
-      </form>
+      
     </div>
   </div>
 </div>
