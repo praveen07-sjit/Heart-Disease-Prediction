@@ -258,84 +258,85 @@ else {
 </select>
 
           <button type="submit">Predict</button>
-          {result && (
-<div className="info-panel">
+         {result && (
+  <div className="dashboard">
 
-<h3>📋 Patient Information</h3>
+    <div className="left-column">
 
-<p><strong>Age:</strong> {formData.age}</p>
+      <div className="info-panel">
+        <h3>📋 Patient Information</h3>
 
-<p><strong>Blood Pressure:</strong> {formData.bp}</p>
+        <p><strong>Age:</strong> {formData.age}</p>
+        <p><strong>Blood Pressure:</strong> {formData.bp}</p>
+        <p><strong>Cholesterol:</strong> {formData.cholesterol}</p>
+        <p><strong>Heart Rate:</strong> {formData.thalach}</p>
+        <p><strong>Old Peak:</strong> {formData.oldpeak}</p>
+      </div>
 
-<p><strong>Cholesterol:</strong> {formData.cholesterol}</p>
+      <div className="recommendation-panel">
+        <h3>💡 Recommendations</h3>
 
-<p><strong>Heart Rate:</strong> {formData.thalach}</p>
+        <ul>
+          <li>🏃 Exercise at least 30 minutes daily</li>
+          <li>🥗 Follow a heart-healthy diet</li>
+          <li>🚭 Avoid smoking and alcohol</li>
+          <li>💧 Stay hydrated</li>
+          <li>🩺 Schedule regular heart checkups</li>
+        </ul>
+      </div>
 
-<p><strong>Old Peak:</strong> {formData.oldpeak}</p>
+    </div>
 
-</div>
-)}
-<div className="recommendation-panel">
+    <div
+  className={`right-column result ${
+        heartDisease >= 70
+          ? "high-risk"
+          : heartDisease >= 40
+          ? "medium-risk"
+          : "low-risk"
+      }`}
+    >
 
-<h3>💡 Recommendations</h3>
+      <h2>
+        {heartDisease >= 70
+          ? "🔴 High Risk of Heart Disease"
+          : heartDisease >= 40
+          ? "🟡 Moderate Risk of Heart Disease"
+          : "🟢 Low Risk of Heart Disease"}
+      </h2>
 
-<ul>
-<li>🏃 Exercise at least 30 minutes daily</li>
-<li>🥗 Follow a heart-healthy diet</li>
-<li>🚭 Avoid smoking and alcohol</li>
-<li>💧 Stay hydrated</li>
-<li>🩺 Schedule regular heart checkups</li>
+      <p><strong>Confidence:</strong> {confidence}%</p>
 
-</ul>
+      <br />
 
-</div>
+      <p><strong>Heart Disease Risk:</strong> {heartDisease}%</p>
 
-        {result && (
-<div
-  className={`result ${
-    heartDisease >= 70
-      ? "high-risk"
-      : heartDisease >= 40
-      ? "medium-risk"
-      : "low-risk"
-  }`}
->
-    <h2>
-  {heartDisease >= 70
-    ? "🔴 High Risk of Heart Disease"
-    : heartDisease >= 40
-    ? "🟡 Moderate Risk of Heart Disease"
-    : "🟢 Low Risk of Heart Disease"}
-</h2>
-
-    <p><strong>Confidence:</strong> {confidence}%</p>
-
-    <br />
-
-    <p><strong>Heart Disease Risk:</strong> {heartDisease}%</p>
-
-    <progress
+      <progress
         value={heartDisease}
         max="100"
         style={{ width: "100%", height: "20px" }}
-    ></progress>
+      />
 
-    <br /><br />
+      <br /><br />
 
-    <p><strong>Healthy Probability:</strong> {healthy}%</p>
+      <p><strong>Healthy Probability:</strong> {healthy}%</p>
 
-    <progress
+      <progress
         value={healthy}
         max="100"
         style={{ width: "100%", height: "20px" }}
-    ></progress>
-    <br /><br />
+      />
 
-<h3>Patient Summary</h3>
+      <br /><br />
 
-<p>{summary}</p>
-</div>
-)}
+      <h3>Patient Summary</h3>
+
+      <p>{summary}</p>
+
+    </div>
+
+  </div>
+)} 
       </form>
     </div>
   </div>
