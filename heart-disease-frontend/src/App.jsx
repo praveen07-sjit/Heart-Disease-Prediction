@@ -1,377 +1,373 @@
 import "./App.css";
 import { useState } from "react";
 import { jsPDF } from "jspdf";
-import background from "./assets/ai-medical-bg.jpg";
-
+import background from "./assets/new-bg.png";
 function App() {
   const [formData, setFormData] = useState({
-  age: "",
-  sex: "",
-  cp: "",
-  bp: "",
-  cholesterol: "",
-  fbs: "",
-  restecg: "",
-  thalach: "",
-  exang: "",
-  oldpeak: "",
-  slope: "",
-  ca: "",
-  thal: ""
-});
-const [result, setResult] = useState("");
-const [confidence, setConfidence] = useState("");
-const [heartDisease, setHeartDisease] = useState(0);
-const [healthy, setHealthy] = useState(0);
+    age: "",
+    sex: "",
+    cp: "",
+    bp: "",
+    cholesterol: "",
+    fbs: "",
+    restecg: "",
+    thalach: "",
+    exang: "",
+    oldpeak: "",
+    slope: "",
+    ca: "",
+    thal: ""
+  });
+  const [result, setResult] = useState("");
+  const [confidence, setConfidence] = useState("");
+  const [heartDisease, setHeartDisease] = useState(0);
+  const [healthy, setHealthy] = useState(0);
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-const downloadReport = () => {
-  const doc = new jsPDF();
+  const downloadReport = () => {
+    const doc = new jsPDF();
 
-  doc.setFontSize(18);
-  doc.text("Heart Disease Prediction Report", 20, 20);
+    doc.setFontSize(18);
+    doc.text("Heart Disease Prediction Report", 20, 20);
 
-  doc.setFontSize(12);
+    doc.setFontSize(12);
 
-  doc.text(`Age: ${formData.age}`, 20, 40);
-  doc.text(`Blood Pressure: ${formData.bp}`, 20, 50);
-  doc.text(`Cholesterol: ${formData.cholesterol}`, 20, 60);
-  doc.text(`Heart Rate: ${formData.thalach}`, 20, 70);
-  doc.text(`Old Peak: ${formData.oldpeak}`, 20, 80);
+    doc.text(`Age: ${formData.age}`, 20, 40);
+    doc.text(`Blood Pressure: ${formData.bp}`, 20, 50);
+    doc.text(`Cholesterol: ${formData.cholesterol}`, 20, 60);
+    doc.text(`Heart Rate: ${formData.thalach}`, 20, 70);
+    doc.text(`Old Peak: ${formData.oldpeak}`, 20, 80);
 
-  doc.text(`Risk: ${heartDisease}%`, 20, 100);
-  doc.text(`Confidence: ${confidence}%`, 20, 110);
+    doc.text(`Risk: ${heartDisease}%`, 20, 100);
+    doc.text(`Confidence: ${confidence}%`, 20, 110);
 
-  doc.text("Patient Summary:", 20, 130);
+    doc.text("Patient Summary:", 20, 130);
 
-  const lines = doc.splitTextToSize(summary, 170);
-  doc.text(lines, 20, 140);
+    const lines = doc.splitTextToSize(summary, 170);
+    doc.text(lines, 20, 140);
 
-  doc.save("Heart_Disease_Report.pdf");
-};
- const handleSubmit = (e) => {
-    
+    doc.save("Heart_Disease_Report.pdf");
+  };
+  const handleSubmit = (e) => {
+
     e.preventDefault();
 
     fetch("https://heart-disease-prediction-zybj.onrender.com/predict", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(formData),
-})
-.then(async (res) => {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then(async (res) => {
 
 
-  const text = await res.text();
-  
+        const text = await res.text();
 
-  return JSON.parse(text);
-})
-.then((data) => {
-  setResult(data.result);
-setConfidence(data.confidence);
-  setHeartDisease(data.heartDisease);
-  setHealthy(data.healthy);
-})
-.catch((err) => {
-  console.error(err);
-});
-};
-let summary = "";
 
-if (heartDisease >= 70) {
-  summary =
-    "The patient is at HIGH risk of heart disease. Immediate medical consultation is recommended. Lifestyle modifications and regular monitoring are strongly advised.";
-}
-else if (heartDisease >= 40) {
-  summary =
-    "The patient has a MODERATE risk of heart disease. Regular exercise, a healthy diet, and periodic medical checkups are recommended.";
-}
-else {
-  summary =
-    "The patient is at LOW risk of heart disease. Continue maintaining a healthy lifestyle and attend routine medical checkups.";
-}
+        return JSON.parse(text);
+      })
+      .then((data) => {
+        setResult(data.result);
+        setConfidence(data.confidence);
+        setHeartDisease(data.heartDisease);
+        setHealthy(data.healthy);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+  let summary = "";
+
+  if (heartDisease >= 70) {
+    summary =
+      "The patient is at HIGH risk of heart disease. Immediate medical consultation is recommended. Lifestyle modifications and regular monitoring are strongly advised.";
+  }
+  else if (heartDisease >= 40) {
+    summary =
+      "The patient has a MODERATE risk of heart disease. Regular exercise, a healthy diet, and periodic medical checkups are recommended.";
+  }
+  else {
+    summary =
+      "The patient is at LOW risk of heart disease. Continue maintaining a healthy lifestyle and attend routine medical checkups.";
+  }
   return (
-    <div
-  className="container"
-  style={{
-    backgroundImage: `url(${background})`,
-  }}
->
+
+  <div
+    className="container"
+    style={{
+      backgroundImage: `url(${background})`,
+    }}
+  >
+    <div className="overlay"></div>
+
     <div className="hero">
 
-  <div className="left-panel">
+      
+        <span className="logo-text">💗 CardioCare</span>
 
- <span className="logo-text">
-  🫀 CardioCare
-</span>
+        <h1>
+          Heart Disease
+          <br />
+          Risk Assessment
+        </h1>
 
-<h1>
-  Heart Disease
-  <br />
-  Risk Assessment
-</h1>
+        <h3>Machine Learning Powered Healthcare</h3>
 
-<h3>
-  Machine Learning Powered Healthcare
-</h3>
+        <p>
+          Enter patient details to predict the likelihood of heart disease
+          using machine learning.
+        </p>
 
-    <p>
-      Enter patient details to predict the
-      likelihood of heart disease using
-      machine learning.
-    </p>
+        <div className="feature-box">
+          <div className="feature">
+            ❤️ <span>Accurate Prediction</span>
+          </div>
 
-    <div className="feature-box">
+          <div className="feature">
+            ⚡ <span>Fast Analysis</span>
+          </div>
 
-      <div className="feature">
-        ❤️
-        <span>Accurate Prediction</span>
-      </div>
+          <div className="feature">
+            🔒 <span>Secure Data</span>
+          </div>
+        </div>
+      
 
-      <div className="feature">
-        ⚡
-        <span>Fast Analysis</span>
-      </div>
-
-      <div className="feature">
-        🔒
-        <span>Secure Data</span>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div className="right-panel">
-
-      <form onSubmit={handleSubmit} className="form">
-        <input
-          type="number"
-          name="age"
-          placeholder="Age"
-          value={formData.age}
-          onChange={handleChange}
-          required
-        />
-
-        <select name="sex" value={formData.sex} onChange={handleChange} required>
-          <option value="">Select Gender</option>
-          <option value="1">Male</option>
-          <option value="0">Female</option>
-        </select>
+      
 
        
-<select
-  name="cp"
-  value={formData.cp}
-  onChange={handleChange}
-  required
->
-  <option value="">Chest Pain Type</option>
-  <option value="0">Typical Angina</option>
-  <option value="1">Atypical Angina</option>
-  <option value="2">Non-anginal Pain</option>
-  <option value="3">Asymptomatic</option>
-</select>
-<input
-          type="number"
-          name="bp"
-          placeholder="Resting Blood Pressure"
-          value={formData.bp}
-          onChange={handleChange}
-          required
-        />
 
-        <input
-          type="number"
-          name="cholesterol"
-          placeholder="Cholesterol Level"
-          value={formData.cholesterol}
-          onChange={handleChange}
-          required
-        />
-        <select
-  name="fbs"
-  value={formData.fbs}
-  onChange={handleChange}
-  required
->
-  <option value="">Fasting Blood Sugar</option>
-  <option value="0">Less than 120 mg/dl</option>
-  <option value="1">Greater than 120 mg/dl</option>
-</select>
-<select
-  name="restecg"
-  value={formData.restecg}
-  onChange={handleChange}
-  required
->
-  <option value="">Resting ECG</option>
-  <option value="0">Normal</option>
-  <option value="1">ST-T Wave Abnormality</option>
-  <option value="2">Left Ventricular Hypertrophy</option>
-</select>
-<input
-  type="number"
-  name="thalach"
-  placeholder="Maximum Heart Rate"
-  value={formData.thalach}
-  onChange={handleChange}
-  required
-/>
-<select
-  name="exang"
-  value={formData.exang}
-  onChange={handleChange}
-  required
->
-  <option value="">Exercise Induced Angina</option>
-  <option value="0">No</option>
-  <option value="1">Yes</option>
-</select>
-<input
-  type="number"
-  step="0.1"
-  name="oldpeak"
-  placeholder="Oldpeak (ST Depression)"
-  value={formData.oldpeak}
-  onChange={handleChange}
-  required
-/>
-<select
-  name="slope"
-  value={formData.slope}
-  onChange={handleChange}
-  required
->
-  <option value="">Slope</option>
-  <option value="0">Upsloping</option>
-  <option value="1">Flat</option>
-  <option value="2">Downsloping</option>
-</select>
-<select
-  name="ca"
-  value={formData.ca}
-  onChange={handleChange}
-  required
->
-  <option value="">Major Vessels</option>
-  <option value="0">0</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-</select>
-<select
-  name="thal"
-  value={formData.thal}
-  onChange={handleChange}
-  required
->
-  <option value="">Thalassemia</option>
-  <option value="1">Normal</option>
-  <option value="2">Fixed Defect</option>
-  <option value="3">Reversible Defect</option>
-</select>
+            <form onSubmit={handleSubmit} className="form">
+              <input
+                type="number"
+                name="age"
+                placeholder="Age"
+                value={formData.age}
+                onChange={handleChange}
+                required
+              />
 
-          <button type="submit">Predict</button>
-          </form>
-         {result && (
-  <div className="dashboard">
+              <select name="sex" value={formData.sex} onChange={handleChange} required>
+                <option value="">Select Gender</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+              </select>
 
-    <div className="left-column">
 
-      <div className="info-panel">
-        <h3>📋 Patient Information</h3>
+              <select
+                name="cp"
+                value={formData.cp}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Chest Pain Type</option>
+                <option value="0">Typical Angina</option>
+                <option value="1">Atypical Angina</option>
+                <option value="2">Non-anginal Pain</option>
+                <option value="3">Asymptomatic</option>
+              </select>
+              <input
+                type="number"
+                name="bp"
+                placeholder="Resting Blood Pressure"
+                value={formData.bp}
+                onChange={handleChange}
+                required
+              />
 
-        <p><strong>Age:</strong> {formData.age}</p>
-        <p><strong>Blood Pressure:</strong> {formData.bp}</p>
-        <p><strong>Cholesterol:</strong> {formData.cholesterol}</p>
-        <p><strong>Heart Rate:</strong> {formData.thalach}</p>
-        <p><strong>Old Peak:</strong> {formData.oldpeak}</p>
-        <hr />
+              <input
+                type="number"
+                name="cholesterol"
+                placeholder="Cholesterol Level"
+                value={formData.cholesterol}
+                onChange={handleChange}
+                required
+              />
+              <select
+                name="fbs"
+                value={formData.fbs}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Fasting Blood Sugar</option>
+                <option value="0">Less than 120 mg/dl</option>
+                <option value="1">Greater than 120 mg/dl</option>
+              </select>
+              <select
+                name="restecg"
+                value={formData.restecg}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Resting ECG</option>
+                <option value="0">Normal</option>
+                <option value="1">ST-T Wave Abnormality</option>
+                <option value="2">Left Ventricular Hypertrophy</option>
+              </select>
+              <input
+                type="number"
+                name="thalach"
+                placeholder="Maximum Heart Rate"
+                value={formData.thalach}
+                onChange={handleChange}
+                required
+              />
+              <select
+                name="exang"
+                value={formData.exang}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Exercise Induced Angina</option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+              </select>
+              <input
+                type="number"
+                step="0.1"
+                name="oldpeak"
+                placeholder="Oldpeak (ST Depression)"
+                value={formData.oldpeak}
+                onChange={handleChange}
+                required
+              />
+              <select
+                name="slope"
+                value={formData.slope}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Slope</option>
+                <option value="0">Upsloping</option>
+                <option value="1">Flat</option>
+                <option value="2">Downsloping</option>
+              </select>
+              <select
+                name="ca"
+                value={formData.ca}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Major Vessels</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              <select
+                name="thal"
+                value={formData.thal}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Thalassemia</option>
+                <option value="1">Normal</option>
+                <option value="2">Fixed Defect</option>
+                <option value="3">Reversible Defect</option>
+              </select>
 
-<h3>💡 Recommendations</h3>
+              <button type="submit">Predict</button>
+            </form>
+            {result && (
+              <div className="dashboard">
 
-<ul>
-    <li>🏃 Exercise at least 30 minutes daily</li>
-    <li>🥗 Follow a heart-healthy diet</li>
-    <li>🚭 Avoid smoking and alcohol</li>
-    <li>💧 Stay hydrated</li>
-    <li>🩺 Schedule regular heart checkups</li>
-</ul>
-<button
-    className="download-btn"
-    onClick={downloadReport}
->
-    📄 Download Medical Report
-</button>
-      </div>
+                <div className="left-column">
 
-    
+                  <div className="info-panel">
+                    <h3>📋 Patient Information</h3>
 
-    </div>
+                    <p><strong>Age:</strong> {formData.age}</p>
+                    <p><strong>Blood Pressure:</strong> {formData.bp}</p>
+                    <p><strong>Cholesterol:</strong> {formData.cholesterol}</p>
+                    <p><strong>Heart Rate:</strong> {formData.thalach}</p>
+                    <p><strong>Old Peak:</strong> {formData.oldpeak}</p>
+                    <hr />
 
-    <div
-  className={`right-column result ${
-        heartDisease >= 70
-          ? "high-risk"
-          : heartDisease >= 40
-          ? "medium-risk"
-          : "low-risk"
-      }`}
-    >
+                    <h3>💡 Recommendations</h3>
 
-      <h2>
-        {heartDisease >= 70
-          ? "🔴 High Risk of Heart Disease"
-          : heartDisease >= 40
-          ? "🟡 Moderate Risk of Heart Disease"
-          : "🟢 Low Risk of Heart Disease"}
-      </h2>
+                    <ul>
+                      <li>🏃 Exercise at least 30 minutes daily</li>
+                      <li>🥗 Follow a heart-healthy diet</li>
+                      <li>🚭 Avoid smoking and alcohol</li>
+                      <li>💧 Stay hydrated</li>
+                      <li>🩺 Schedule regular heart checkups</li>
+                    </ul>
+                    <button
+                      className="download-btn"
+                      onClick={downloadReport}
+                    >
+                      📄 Download Medical Report
+                    </button>
+                  </div>
 
-      <p><strong>Confidence:</strong> {confidence}%</p>
 
-      <br />
 
-      <p><strong>Heart Disease Risk:</strong> {heartDisease}%</p>
+                </div>
 
-      <progress
-        value={heartDisease}
-        max="100"
-        style={{ width: "100%", height: "20px" }}
-      />
+                <div
+                  className={`right-column result ${heartDisease >= 70
+                    ? "high-risk"
+                    : heartDisease >= 40
+                      ? "medium-risk"
+                      : "low-risk"
+                    }`}
+                >
 
-      <br /><br />
+                  <h2>
+                    {heartDisease >= 70
+                      ? "🔴 High Risk of Heart Disease"
+                      : heartDisease >= 40
+                        ? "🟡 Moderate Risk of Heart Disease"
+                        : "🟢 Low Risk of Heart Disease"}
+                  </h2>
 
-      <p><strong>Healthy Probability:</strong> {healthy}%</p>
+                  <p><strong>Confidence:</strong> {confidence}%</p>
 
-      <progress
-        value={healthy}
-        max="100"
-        style={{ width: "100%", height: "20px" }}
-      />
+                  <br />
 
-      <br /><br />
+                  <p><strong>Heart Disease Risk:</strong> {heartDisease}%</p>
 
-      <h3>Patient Summary</h3>
+                  <progress
+                    value={heartDisease}
+                    max="100"
+                    style={{ width: "100%", height: "20px" }}
+                  />
 
-      <p>{summary}</p>
+                  <br /><br />
 
-    </div>
+                  <p><strong>Healthy Probability:</strong> {healthy}%</p>
 
-  </div>
-)} 
-      
-    </div>
-  </div>
-</div>
-  );
+                  <progress
+                    value={healthy}
+                    max="100"
+                    style={{ width: "100%", height: "20px" }}
+                  />
+
+                  <br /><br />
+
+                  <h3>Patient Summary</h3>
+
+                  <p>{summary}</p>
+
+                </div>
+
+              </div>
+            )}
+
+              
+
+     
+
+    </div> {/* hero */}
+
+  </div> 
+);
 }
+
 
 export default App;
