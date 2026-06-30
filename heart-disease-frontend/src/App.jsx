@@ -272,19 +272,20 @@ else {
         <p><strong>Cholesterol:</strong> {formData.cholesterol}</p>
         <p><strong>Heart Rate:</strong> {formData.thalach}</p>
         <p><strong>Old Peak:</strong> {formData.oldpeak}</p>
+        <hr />
+
+<h3>💡 Recommendations</h3>
+
+<ul>
+    <li>🏃 Exercise at least 30 minutes daily</li>
+    <li>🥗 Follow a heart-healthy diet</li>
+    <li>🚭 Avoid smoking and alcohol</li>
+    <li>💧 Stay hydrated</li>
+    <li>🩺 Schedule regular heart checkups</li>
+</ul>
       </div>
 
-      <div className="recommendation-panel">
-        <h3>💡 Recommendations</h3>
-
-        <ul>
-          <li>🏃 Exercise at least 30 minutes daily</li>
-          <li>🥗 Follow a heart-healthy diet</li>
-          <li>🚭 Avoid smoking and alcohol</li>
-          <li>💧 Stay hydrated</li>
-          <li>🩺 Schedule regular heart checkups</li>
-        </ul>
-      </div>
+    
 
     </div>
 

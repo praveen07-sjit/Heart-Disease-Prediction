@@ -222,48 +222,19 @@ box-sizing:border-box;
 .info-panel strong{
     color:#4fc3f7;
 }
-.recommendation-panel{
-
-margin-top:20px;
-
-padding:20px;
-
-border-radius:20px;
-
-background:#102542;
-
-box-shadow:0 10px 25px rgba(0,0,0,.3);
-
-color:white;
-width:100%;
-box-sizing:border-box;
-
+.info-panel hr{
+    border:1px solid rgba(255,255,255,0.15);
+    margin:20px 0;
 }
 
-.recommendation-panel h3{
-
-text-align:center;
-
-color:#50c8ff;
-
-margin-bottom:15px;
-
+.info-panel ul{
+    margin:15px 0 0;
+    padding-left:20px;
 }
 
-.recommendation-panel ul{
-
-padding-left:20px;
-
-}
-
-.recommendation-panel li{
-
-margin:12px 0;
-
-font-size:16px;
-
-line-height:1.5;
-
+.info-panel li{
+    margin:10px 0;
+    line-height:1.6;
 }
 .dashboard{
     display: flex;
