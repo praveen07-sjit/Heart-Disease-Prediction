@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import { jsPDF } from "jspdf";
 import background from "./assets/ai-medical-bg.jpg";
 
 function App() {
@@ -28,6 +29,28 @@ const [healthy, setHealthy] = useState(0);
       [e.target.name]: e.target.value
     });
   };
+  const downloadReport = () => {
+  const doc = new jsPDF();
+
+  doc.setFontSize(20);
+  doc.text("Heart Disease Prediction Report", 20, 20);
+
+  doc.setFontSize(12);
+
+  doc.text(`Age: ${formData.age}`, 20, 40);
+  doc.text(`Blood Pressure: ${formData.bp}`, 20, 50);
+  doc.text(`Cholesterol: ${formData.cholesterol}`, 20, 60);
+  doc.text(`Heart Rate: ${formData.thalach}`, 20, 70);
+  doc.text(`Old Peak: ${formData.oldpeak}`, 20, 80);
+
+  doc.text(`Risk: ${heartDisease}%`, 20, 100);
+  doc.text(`Confidence: ${confidence}%`, 20, 110);
+
+  doc.text("Summary:", 20, 130);
+  doc.text(summary, 20, 140);
+
+  doc.save("Heart_Disease_Report.pdf");
+};
 
  const handleSubmit = (e) => {
     
@@ -283,6 +306,12 @@ else {
     <li>💧 Stay hydrated</li>
     <li>🩺 Schedule regular heart checkups</li>
 </ul>
+<button
+    className="download-btn"
+    onClick={downloadReport}
+>
+    📄 Download Medical Report
+</button>
       </div>
 
     
