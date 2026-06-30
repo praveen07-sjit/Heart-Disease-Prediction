@@ -220,3 +220,44 @@ transform:translateY(0);
 .info-panel strong{
     color:#4fc3f7;
 }
+.recommendation-panel{
+
+margin-top:20px;
+
+padding:20px;
+
+border-radius:20px;
+
+background:#102542;
+
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+
+color:white;
+
+}
+
+.recommendation-panel h3{
+
+text-align:center;
+
+color:#50c8ff;
+
+margin-bottom:15px;
+
+}
+
+.recommendation-panel ul{
+
+padding-left:20px;
+
+}
+
+.recommendation-panel li{
+
+margin:12px 0;
+
+font-size:16px;
+
+line-height:1.5;
+
+}
